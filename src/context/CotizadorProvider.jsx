@@ -3,10 +3,18 @@ import { useState, createContext } from "react";
 const CotizadorContext = createContext()
 
 const CotizadorProvider = ({children}) => {
+
+    const [datos, setDatos] = useState({
+        marca: '',
+        year: '',
+        plan: ''
+    })
     
     const handleChangeDatos = e => {
-        console.log(e.target.name)
-        console.log(e.target.value)
+        setDatos({
+            ...datos,
+            [e.target.name] : e.target.value 
+        })
 
 
     }
@@ -14,6 +22,7 @@ const CotizadorProvider = ({children}) => {
     return(
         <CotizadorContext.Provider
             value={{
+                datos,
                 handleChangeDatos
             }}
         >
